@@ -10,66 +10,63 @@ AWS Services: VPC, EC2, RDS, S3, IAM, Route 53, Certificate Manager
 Configuration Tools: AWS Management Console, AWS CLI
 Deployment Strategy: Multi-AZ Deployment
 Security: SSL Certificates, IAM Roles, Private Subnets
-Steps to Deploy
 
-3 Tier Project
----------------------------
-GitHub URL: https://github.com/KastroVKiran/3TierArchitectureApp.git
 
 *******************************************
 Steps for Setting Up the Project Infrastructure
 *******************************************
-1. VPC Creation
+### 1. VPC Creation
 Design and create a Virtual Private Cloud (VPC) to serve as the foundation for the project infrastructure.
 
-2. S3 Bucket and IAM Role Setup
+### 2. S3 Bucket and IAM Role Setup
 Create an S3 bucket and upload the application code.
 Set up an IAM role with the necessary permissions and attach it to the EC2 instance.
 
-3. Database Configuration
+### 3. Database Configuration
 Launch and configure an RDS instance to serve as the backend database.
 
-4. Application Tier Setup
+### 4. Application Tier Setup
 Deploy application-tier resources, including the configuration of an internal load balancer for traffic distribution within the tier.
 
-5. Web Tier Setup
+### 5. Web Tier Setup
 Provision web-tier resources and set up an external load balancer to manage incoming traffic from users.
 
-6. SSL Certification and Domain Mapping
+### 6. SSL Certification and Domain Mapping
 Generate an SSL certificate and apply it to the external load balancer to ensure secure communication.
 Map the domain name to the external load balancer for public accessibility.
 
 
 
-~~~~~~~~~~~
-Step 3
-~~~~~~~~~~~
+
+## Step 3
 
 Go into the following path of cloned code "application-code/app-tier/DbConfig.js" and open 'Dbconfig.js' file and change the things accordingly as shown below;
+```
 module.exports = Object.freeze({
     DB_HOST: 'YOUR-DATABASE-ENDPOINT.ap-south-1.rds.amazonaws.com',
     DB_USER: 'admin',
     DB_PWD: 'kastro2025',
     DB_DATABASE: 'webappdb'
 });
-
+```
 The reason for having the above info is our App Servers running in Private Subnets should be able to connect to the DB, for that connectivity it is going to use these credentials provided in DbConfig.js file. 
 
 Update the above code and upload the Dbconfig.js file in the S3 bucket of 'app-tier' folder.
 
-~~~~~~~~~~~
-Step 4
-~~~~~~~~~~~
+
+## Step 4
+
 Creation of App Tier Resources
 
 4.1. 
 In this instance we will do the App Server Setup and DB Server Configuration. Execute the below commands;
 Install MySQL
+```
 sudo yum install mysql -y
-
+```
 Configure MySQL Database
 Connect to the database and perform basic configuration: Replace below info with your DB information
-mysql -h <DB EndPoint> -u admin -p ----> Enter the Password i.e kastro2025 (this is DB password). If you couldn't connect, there is a problem with the SG of the DB.
+mysql -h <DB EndPoint> -u admin -p ----> Enter the Password i.e Dipesh123 (this is DB password). If you couldn't connect, there is a problem with the SG of the DB.
 
 Ex: mysql -h database-1.c380a08uukyc.ap-south-1.rds.amazonaws.com -u admin -p
 
