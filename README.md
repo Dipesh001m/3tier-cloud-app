@@ -3,7 +3,7 @@
 #### This project demonstrates the deployment of a secure and scalable 3-tier architecture on AWS, featuring web, application, and database tiers. It utilizes key AWS services such as VPC, EC2, RDS, S3, and Route 53 to ensure high availability, security, and fault tolerance.
 
 ## Architecture Diagram
-[(Add an architecture diagram if available.)](https://github.com/Dipesh001m/3tier-cloud-app/blob/main/Diagram.png)
+![3-Tier Cloud Application Architecture](https://github.com/Dipesh001m/3tier-cloud-app/blob/main/Diagram.png)
 
 ### Technologies Used
 AWS Services: VPC, EC2, RDS, S3, IAM, Route 53, Certificate Manager
